@@ -1,0 +1,23 @@
+{
+    "name": "player-gg-simple-game-overlay",
+    "version": "1.0.0",
+    "description": "Player.GG Simple Game Overlay",
+    "main": "index.js",
+    "scripts": {
+        "start": "node_modules/.bin/electron .",
+        "build-release": "npm run build-release--electron && npm run build-release--rename-electron-license && npm run build-release--copy-project-license && npm run build-release--rename-executable && npm run build-release--zip",
+        "build-release--electron": "node_modules/.bin/electron-packager . --out=releases/ --asar --overwrite --icon=assets/icon.ico",
+        "build-release--rename-electron-license": "mv releases/player-gg-simple-game-overlay-win32-x64/LICENSE releases/player-gg-simple-game-overlay-win32-x64/LICENSE.electron",
+        "build-release--copy-project-license": "cp LICENSE releases/player-gg-simple-game-overlay-win32-x64/LICENSE",
+        "build-release--rename-executable": "mv releases/player-gg-simple-game-overlay-win32-x64/player-gg-simple-game-overlay.exe 'releases/player-gg-simple-game-overlay-win32-x64/PlayerGG Simple Game Overlay.exe'",
+        "build-release--zip": "node_modules/.bin/electron-installer-zip releases/ releases/player-gg-simple-game-overlay-win32-x64.zip"
+    },
+    "author": "Christoffer Pettersson <christoffer.pettersson@player.gg>",
+    "license": " GPL-3.0 ",
+    "homepage": "https://github.com/playergg/simple-game-overlay/",
+    "devDependencies": {
+        "electron": "^6.0.3",
+        "electron-installer-zip": "^0.1.2",
+        "electron-packager": "^14.0.4"
+    }
+}

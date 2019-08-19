@@ -1,0 +1,9 @@
+# IDEs
+/.idea/
+
+## Modules
+/node_modules/
+
+## Release folder
+/releases/
+!/releases/README.md

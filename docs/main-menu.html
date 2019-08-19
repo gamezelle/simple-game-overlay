@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player.GG - Simple Game Overlay - Main menu</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <style>
+
+        * {
+            font-family: "Source Sans Pro", sans-serif;
+            text-shadow: 1px 1px 2px black;
+            transition: 0.35s all;
+        }
+
+        .body {
+
+            margin: 10px;
+
+            background-image: url(images/background.png);
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            color: #ddd;
+
+            overflow-y: hidden;
+
+        }
+
+        h1 {
+            font-weight: normal;
+        }
+
+        a {
+            color: #82c5ff;
+            text-decoration: none;
+        }
+
+        /*a:active, &:focus {*/
+        /*color: @link-color-blue;*/
+        /*}*/
+
+        a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        /*img {*/
+            /*filter: drop-shadow(1px 1px 2px black);*/
+        /*}*/
+
+        button {
+            display: block;
+            padding: 10px;
+            color: white;
+            margin-bottom: 10px;
+            background-color: #2980b9;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            min-width: 150px;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        input {
+            padding: 10px;
+            color: white;
+            margin-bottom: 10px;
+            background: transparent;
+            border: 1px solid darkgray;
+        }
+
+        input[type="text"] {
+            display: block;
+           width: 75%;
+        }
+
+        .section {
+            padding-top: 10px;
+            height: 100vh;
+        }
+
+        .button--back {
+            float: right;
+            height: 24px;
+            width: 24px;
+            min-width: auto;
+            background-color: transparent;
+            background-image: url(images/icons/arrow-up.svg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 60% 60%;
+        }
+
+        .button--back:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+    </style>
+</head>
+<body class="body">
+
+    <section class="section section--main-menu">
+        <h1>What do you want to do?</h1>
+        <button onclick="window.showSection('load-twitch-chat');">Load in a Twitch chat</button>
+        <button onclick="window.showSection('load-custom-url');" style="margin-bottom: 40px;">Load in a custom URL</button>
+        <h1>Do you have feedback?</h1>
+        <div><a href="https://www.player.gg/tools/simple-game-overlay/" target="_blank">We appreciate any feedback we can get.</a></div>
+    </section>
+
+    <section class="section section--load-twitch-chat">
+        <h1>Load in a Twitch chat
+            <button class="button--back" onclick="window.showSection('main-menu');"></button>
+        </h1>
+        <div style="margin-bottom: 10px;">Channel name</div>
+        <input type="text" id="twitch-chat-name"/>
+        <input type="checkbox" id="twitch-chat-darkmode">Darkmode<br>
+        <button onclick="window.loadTwitchChat()">Load chat</button>
+    </section>
+
+    <section class="section section--load-custom-url">
+        <h1>Load in a custom URL
+            <button class="button--back" onclick="window.showSection('main-menu');"></button>
+        </h1>
+        <div style="margin-bottom: 10px;">URL</div>
+        <input type="text" id="custom-url" value=""/>
+        <button onclick="window.loadCustomURL()">Load custom URL</button>
+    </section>
+
+<script>
+
+    window.showSection = function ( id ) {
+
+        const section = document.querySelector(".section--" + id);
+        section.scrollIntoView({
+            behavior: "smooth"
+        });
+
+//         document.querySelector(".section--main-menu").style.display = "none";
+//         document.querySelector(".section--load-twitch-chat").style.display = "none";
+//         document.querySelector(".section--custom-url").style.display = "none";
+//
+//         document.querySelector(".section--" + id).style.display = "block";
+
+    };
+
+    window.loadTwitchChat = function () {
+
+        var channelName = document.querySelector("#twitch-chat-name").value;
+        var darkmode = document.querySelector("#twitch-chat-darkmode").checked;
+
+        let url = "https://www.twitch.tv/embed/" + channelName + "/chat";
+        if( darkmode ) {
+            url += "?darkpopout";
+        }
+
+        window.location.href = url;
+    };
+
+    window.loadCustomURL = function () {
+        const url = document.querySelector("#custom-url").value;
+//         window.location.href = "?redirect=" + url;
+        window.location.href = url;
+    };
+
+    window.showSection("main-menu");
+
+</script>
+
+
+</body>
+</html>

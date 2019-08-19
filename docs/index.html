@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player.GG - Simple Game Overlay</title>
+    <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
+    <style>
+
+        * {
+            transition: 0.5s all;
+        }
+
+        button:focus {
+            outline: 0;
+        }
+
+        .body {
+            margin: 0;
+        }
+
+        .body {
+            background: transparent;
+            /*background: red;*/
+        }
+
+        .body--show-top-bar {
+            /*background: blue;*/
+            background-color: rgba(16, 67, 112, 0.5);
+            /*background: rgba(255, 255, 255, 0.1);*/
+        }
+
+        .dashboard {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            bottom: 5px;
+            left: 5px;
+        }
+
+        .dashboard__top {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 20px;
+            left: 0;
+
+            text-align: right;
+
+            background-image: url("images/logotype.png");
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-size: auto 100%;
+        }
+
+        .body--show-top-bar .dashboard__top {
+            opacity: 1;
+        }
+
+        .dashboard__top__button {
+            border: none;
+            background: transparent;
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 50% 50%;
+            cursor: pointer;
+        }
+
+        .dashboard__top__button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dashboard__top__button--close {
+            background-image: url(images/icons/close.svg);
+        }
+
+        .dashboard__top__button--minimize {
+            background-image: url(images/icons/minimize.svg);
+        }
+
+        .dashboard__top__button--move {
+            background-image: url(images/icons/move.svg);
+            cursor: move;
+            -webkit-app-region: drag;
+            pointer-events: none;
+        }
+
+
+
+        .dashboard__iframe-container {
+            position: absolute;
+            top: 25px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .dashboard__iframe-container iframe {
+            border: none;
+            height: 100%;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body class="body">
+<div class="dashboard">
+    <div class="dashboard__top">
+        <button class="dashboard__top__button dashboard__top__button--move" title="Move"></button>
+        <button class="dashboard__top__button dashboard__top__button--minimize" title="Minimize"></button>
+        <button class="dashboard__top__button dashboard__top__button--close" title="Close"></button>
+    </div>
+    <div class="dashboard__iframe-container">
+        <iframe src="main-menu.html"></iframe>
+    </div>
+</div>
+
+
+<script>
+
+    (function () {
+
+        let electron;
+        if( typeof require !== "undefined" ) {
+            electron = require("electron");
+        }
+
+        if( electron ) {
+            electron.remote.getCurrentWindow().on('move', function () {
+                document.body.classList.add("body--show-top-bar");
+//                 console.log("move");
+            });
+        }
+
+        document.body.addEventListener("mouseenter", function () {
+            document.body.classList.add("body--show-top-bar");
+//             console.log("mouseenter");
+        });
+
+        document.body.addEventListener("mouseleave", function () {
+            document.body.classList.remove("body--show-top-bar");
+        });
+
+        window.addEventListener("resize", function () {
+            document.body.classList.add("body--show-top-bar");
+        });
+
+        /*
+         * Button clicks
+         */
+
+        document.querySelector(".dashboard__top__button--minimize").addEventListener("click", function () {
+            electron.ipcRenderer.send("pgg-minimize-app");
+        });
+
+        document.querySelector(".dashboard__top__button--close").addEventListener("click", function () {
+            electron.ipcRenderer.send("pgg-close-app");
+        });
+
+    })();
+
+</script>
+
+</body>
+</html>

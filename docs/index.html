@@ -92,6 +92,10 @@
             background-image: url(images/icons/minimize.svg);
         }
 
+        .dashboard__top__button--help {
+            background-image: url(images/icons/help.svg);
+        }
+
         .dashboard__top__button--move {
             background-image: url(images/icons/move.svg);
             cursor: move;
@@ -118,6 +122,7 @@
 <body class="body">
 <div class="dashboard">
     <div class="dashboard__top">
+        <button class="dashboard__top__button dashboard__top__button--help" title="Help"></button>
         <button class="dashboard__top__button dashboard__top__button--move" title="Move"></button>
         <button class="dashboard__top__button dashboard__top__button--minimize" title="Minimize"></button>
         <button class="dashboard__top__button dashboard__top__button--close" title="Close"></button>
@@ -165,6 +170,10 @@
 
         document.querySelector(".dashboard__top__button--close").addEventListener("click", function () {
             electron.ipcRenderer.send("pgg-close-app");
+        });
+
+        document.querySelector(".dashboard__top__button--help").addEventListener("click", function () {
+            electron.ipcRenderer.send("pgg-open-official-site");
         });
 
     })();

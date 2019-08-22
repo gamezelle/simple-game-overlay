@@ -10,6 +10,14 @@ The Player.GG Simple Game Overlay is a very simple, but flexible, tool to show v
 
 ## Changes
 
+### Version 1.0.1
+
+- Improved readme
+- Now using web version
+- Text changes
+- Added help button
+- Formatted code
+
 ### Version 1.0.0
 
  - Initial version

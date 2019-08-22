@@ -1,6 +1,6 @@
 {
     "name": "player-gg-simple-game-overlay",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Player.GG Simple Game Overlay",
     "main": "index.js",
     "scripts": {

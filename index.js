@@ -3,7 +3,7 @@
  */
 
 const path = require("path");
-const {app, BrowserWindow, ipcMain} = require("electron");
+const {app, BrowserWindow, ipcMain, shell} = require("electron");
 
 function onReady() {
 
@@ -38,6 +38,10 @@ function onReady() {
 
     ipcMain.on("pgg-close-app", () => {
         win.close();
+    });
+
+    ipcMain.on("pgg-open-official-site", () => {
+        shell.openExternal("https://www.player.gg/tools/simple-game-overlay/");
     });
 
 }

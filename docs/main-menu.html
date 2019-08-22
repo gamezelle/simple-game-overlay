@@ -6,9 +6,10 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126639580-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
+        function gtag() {dataLayer.push(arguments);}
+
+        gtag('js', new Date());
         gtag('config', 'UA-126639580-3');
     </script>
 
@@ -58,7 +59,7 @@
         }
 
         /*img {*/
-            /*filter: drop-shadow(1px 1px 2px black);*/
+        /*filter: drop-shadow(1px 1px 2px black);*/
         /*}*/
 
         button {
@@ -87,7 +88,7 @@
 
         input[type="text"] {
             display: block;
-           width: 75%;
+            width: 75%;
         }
 
         .section {
@@ -115,41 +116,43 @@
 </head>
 <body class="body">
 
-    <section class="section section--main-menu">
-        <h1>What do you want to do?</h1>
-        <button onclick="window.showSection('load-twitch-chat');">Load in a Twitch chat</button>
-        <button onclick="window.showSection('load-custom-url');" style="margin-bottom: 40px;">Load in a custom URL</button>
-        <h1>Do you have feedback?</h1>
-        <div><a href="https://www.player.gg/tools/simple-game-overlay/" target="_blank">We appreciate any feedback we can get!</a></div>
-    </section>
+<section class="section section--main-menu">
+    <h1>What do you want to do?</h1>
+    <button onclick="window.showSection('load-twitch-chat');">Load in a Twitch chat</button>
+    <button onclick="window.showSection('load-custom-url');" style="margin-bottom: 40px;">Load in a custom URL</button>
+    <h1>Do you have feedback?</h1>
+    <div>We appreciate any feedback we can get! Press the help button in the top menu!</div>
+</section>
 
-    <section class="section section--load-twitch-chat">
-        <h1>Load in a Twitch chat
-            <button class="button--back" onclick="window.showSection('main-menu');"></button>
-        </h1>
-        <div style="margin-bottom: 10px;">Channel name</div>
-        <input type="text" id="twitch-chat-name"/>
-        <input type="checkbox" id="twitch-chat-darkmode">Darkmode<br>
-        <button onclick="window.loadTwitchChat()">Load chat</button>
-    </section>
+<section class="section section--load-twitch-chat">
+    <h1>Load in a Twitch chat
+        <button class="button--back" onclick="window.showSection('main-menu');"></button>
+    </h1>
+    <div style="margin-bottom: 10px;">Channel name</div>
+    <input type="text" id="twitch-chat-name"/>
+    <input type="checkbox" id="twitch-chat-darkmode">Darkmode<br>
+    <button onclick="window.loadTwitchChat()">Load chat</button>
+</section>
 
-    <section class="section section--load-custom-url">
-        <h1>Load in a custom URL
-            <button class="button--back" onclick="window.showSection('main-menu');"></button>
-        </h1>
-        <div style="margin-bottom: 10px;">URL</div>
-        <input type="text" id="custom-url" value=""/>
-        <button onclick="window.loadCustomURL()">Load custom URL</button>
-    </section>
+<section class="section section--load-custom-url">
+    <h1>Load in a custom URL
+        <button class="button--back" onclick="window.showSection('main-menu');"></button>
+    </h1>
+    <div style="margin-bottom: 10px;">URL</div>
+    <input type="text" id="custom-url" value=""/>
+    <button onclick="window.loadCustomURL()">Load custom URL</button>
+</section>
 
 <script>
 
-    window.showSection = function ( id ) {
+    (function () {
 
-        const section = document.querySelector(".section--" + id);
-        section.scrollIntoView({
-            behavior: "smooth"
-        });
+        window.showSection = function ( id ) {
+
+            const section = document.querySelector(".section--" + id);
+            section.scrollIntoView({
+                behavior: "smooth"
+            });
 
 //         document.querySelector(".section--main-menu").style.display = "none";
 //         document.querySelector(".section--load-twitch-chat").style.display = "none";
@@ -157,28 +160,34 @@
 //
 //         document.querySelector(".section--" + id).style.display = "block";
 
-    };
+        };
 
-    window.loadTwitchChat = function () {
+        window.loadTwitchChat = function () {
 
-        var channelName = document.querySelector("#twitch-chat-name").value;
-        var darkmode = document.querySelector("#twitch-chat-darkmode").checked;
+            const channelName = document.querySelector("#twitch-chat-name").value;
+            const darkmode = document.querySelector("#twitch-chat-darkmode").checked;
 
-        let url = "https://www.twitch.tv/embed/" + channelName + "/chat";
-        if( darkmode ) {
-            url += "?darkpopout";
-        }
+            let url = "https://www.twitch.tv/embed/" + channelName + "/chat";
+            if( darkmode ) {
+                url += "?darkpopout";
+            }
 
-        window.location.href = url;
-    };
+            window.location.href = url;
+        };
 
-    window.loadCustomURL = function () {
-        const url = document.querySelector("#custom-url").value;
+        window.loadCustomURL = function () {
+            const url = document.querySelector("#custom-url").value;
 //         window.location.href = "?redirect=" + url;
-        window.location.href = url;
-    };
+            window.location.href = url;
+        };
 
-    window.showSection("main-menu");
+        /*
+         * Init
+         */
+
+        window.showSection("main-menu");
+
+    })();
 
 </script>
 

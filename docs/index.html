@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126639580-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-126639580-3');
+    </script>
+
     <meta charset="UTF-8">
     <title>Player.GG - Simple Game Overlay</title>
     <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
@@ -88,8 +99,6 @@
             pointer-events: none;
         }
 
-
-
         .dashboard__iframe-container {
             position: absolute;
             top: 25px;
@@ -131,13 +140,11 @@
         if( electron ) {
             electron.remote.getCurrentWindow().on('move', function () {
                 document.body.classList.add("body--show-top-bar");
-//                 console.log("move");
             });
         }
 
         document.body.addEventListener("mouseenter", function () {
             document.body.classList.add("body--show-top-bar");
-//             console.log("mouseenter");
         });
 
         document.body.addEventListener("mouseleave", function () {

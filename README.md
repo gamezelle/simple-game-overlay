@@ -1,6 +1,8 @@
-# Gamezelle Simple Game Overlay
+# This project is deprecated as of June 2020
 
-The Gamezelle Simple Game Overlay is a very simple, but flexible, tool to show various site content over your game.
+# Simple Game Overlay
+
+The Simple Game Overlay is a very simple, but flexible, tool to show various site content over your game.
 
 ## Releases
 

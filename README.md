@@ -1,12 +1,10 @@
-# Player.GG Simple Game Overlay
+# Gamezelle Simple Game Overlay
 
-The Player.GG Simple Game Overlay is a very simple, but flexible, tool to show various site content over your game.
-
-[Click here for the official site for more information.](https://www.player.gg/tools/simple-game-overlay/)
+The Gamezelle Simple Game Overlay is a very simple, but flexible, tool to show various site content over your game.
 
 ## Releases
 
-[Releases to download can be found here.](https://github.com/playergg/simple-game-overlay/releases/)
+[Releases to download can be found here.](https://github.com/gamezelle/simple-game-overlay/releases/)
 
 ## Changes
 

@@ -16,7 +16,7 @@
     "license": " GPL-3.0 ",
     "homepage": "https://github.com/playergg/simple-game-overlay/",
     "devDependencies": {
-        "electron": "^6.0.3",
+        "electron": "^11.5.0",
         "electron-installer-zip": "^0.1.2",
         "electron-packager": "^14.0.4"
     }
